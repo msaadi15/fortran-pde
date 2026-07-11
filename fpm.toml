@@ -1,0 +1,14 @@
+name = "fortran-pde"
+version = "0.1.0"
+license = "MIT"
+author = "you"
+description = "Poisson/Laplace and transport (advection-diffusion) PDE solvers in Fortran"
+
+[build]
+auto-executables = true
+auto-tests = true
+auto-examples = false
+link = ["lapack", "blas"]
+
+[install]
+library = true

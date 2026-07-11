@@ -1,0 +1,27 @@
+name: build-and-test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install gfortran + LAPACK/OpenBLAS
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gfortran liblapack-dev libopenblas-dev
+
+      - name: Build and run convergence test
+        run: make test
+
+      - name: Run Poisson driver
+        run: make run-poisson
+
+      - name: Run transport driver
+        run: make run-transport
